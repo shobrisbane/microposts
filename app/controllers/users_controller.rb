@@ -20,6 +20,16 @@ class UsersController < ApplicationController
   
   def edit
   end
+  
+    def update
+    if @User.update(message_params)
+      # 保存に成功した場合はトップページへリダイレクト
+      redirect_to root_path , notice: 'メッセージを編集しました'
+    else
+      # 保存に失敗した場合は編集画面へ戻す
+      render 'edit'
+    end
+  end
 
   private
 
