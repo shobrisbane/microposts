@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  root 'messages#index'
-  resources :messages , except: [:index, :new]
+  root 'sessions#home'
+  resources :users , except: [:index, :new]
   
 end
