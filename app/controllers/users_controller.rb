@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+before_action :set_user, only: [:edit, :update, :destroy]
   
   def show # 追加
    @user = User.find(params[:id])
@@ -19,10 +20,15 @@ class UsersController < ApplicationController
   end
   
   def edit
+    current_user.id # 今ログインしている人のIDをとりたい
+    #これと
+    params[:id] # URLに含まれているID /users/4/editなら4が入る
+    # を比較して、一致していなかったら、トップページにリダイレクト
+    
   end
   
     def update
-    if @User.update(message_params)
+    if @user.update(user_params)
       # 保存に成功した場合はトップページへリダイレクト
       redirect_to root_path , notice: 'メッセージを編集しました'
     else
@@ -34,7 +40,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
+    params.require(:user).permit(:name, :profile, :email, :address, :password,
                                  :password_confirmation)
+  end
+
+    def set_user
+    @user = User.find(params[:id])
   end
 end
