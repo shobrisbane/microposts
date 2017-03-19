@@ -5,8 +5,8 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %> <!-- ここを追加 -->    
 
-       <%= f.label :profile%>
-      <%= f.text_field :profile %>
+       <%= f.label :name%>
+      <%= f.text_field :name %>
       
       <%= f.label :email %>
       <%= f.text_field :email %>    
