@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+before_action :logged_in_user, only: [:edit, :update]
 before_action :set_user, only: [:edit, :update, :destroy]
+before_action :select_user, only: [:edit, :update]
   
   def show # 追加
    @user = User.find(params[:id])
@@ -21,10 +23,6 @@ before_action :set_user, only: [:edit, :update, :destroy]
   end
   
   def edit
-    current_user.id # 今ログインしている人のIDをとりたい
-    #これと
-    params[:id] # URLに含まれているID /users/4/editなら4が入る
-    # を比較して、一致していなかったら、トップページにリダイレクト
     
   end
   
@@ -48,4 +46,11 @@ before_action :set_user, only: [:edit, :update, :destroy]
     def set_user
     @user = User.find(params[:id])
   end
+  
+def select_user
+ if current_user.id != params[:id].to_i
+   redirect_to root_path
+ end
+end
+  
 end
