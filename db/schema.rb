@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170313222642) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "profile"
-    t.integer  "address"
+    t.string   "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
