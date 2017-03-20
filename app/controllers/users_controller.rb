@@ -5,6 +5,7 @@ before_action :select_user, only: [:edit, :update]
   
   def show # 追加
    @user = User.find(params[:id])
+   @microposts = @user.microposts.order(created_at: :desc)
   end
   
   def new
@@ -33,6 +34,19 @@ before_action :select_user, only: [:edit, :update]
       # 保存に失敗した場合は編集画面へ戻す
       render 'edit'
     end
+  end
+  
+ #  followingページ
+    def following
+      @user  = User.find(params[:id])
+      @users = @user.following_users
+      render 'show_follow'
+  end
+ #  followerページ
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.follower_users
+    render 'show_follower'
   end
 
   private
