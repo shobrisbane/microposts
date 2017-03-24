@@ -34,4 +34,6 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following_users.include?(other_user)
   end
+
+has_many :retweet, :class_name => "micropost"
 end
