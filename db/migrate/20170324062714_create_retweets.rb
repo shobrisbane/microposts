@@ -7,6 +7,6 @@ class CreateRetweets < ActiveRecord::Migration
 
       t.timestamps
     end
-     add_index :retweet, [:micropost_id, :created_at]
+     add_index :retweets, [:micropost_id, :created_at]
   end
 end

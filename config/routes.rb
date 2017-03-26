@@ -14,25 +14,12 @@ Rails.application.routes.draw do
      get :following, :followers
     end
   end
- 
-Retweeter::Application.routes.draw do
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
   
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :microposts, :only => [:create, :destroy]
-  resources :relationships, :only => [:create, :destroy]
-  
-  resource :microposts do
+  resources :microposts do
     member do
       get :retweet
     end
   end
-end
-
 end
 
   
