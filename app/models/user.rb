@@ -36,4 +36,8 @@ class User < ActiveRecord::Base
   end
 
 has_many :retweet, :class_name => "micropost"
+
+ def feed_items
+    Micropost.where(user_id: following_user_ids + [self.id])
+  end
 end
